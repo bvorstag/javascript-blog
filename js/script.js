@@ -15,12 +15,14 @@ function titleClickHandler(event){
   /* [IN PROGRESS] add class 'active' to the clicked link */
 
   console.log('clickedElement:', clickedElement);
+  clickedElement.classList.add('active');
 
   /* [DONE] remove class 'active' from all articles */
 
-  const activeArticles = document.querySelectorAll('.post');
-    for (let activeArticle of activeArticles){
-      activeArticle.classList.remove('active');
+  const activeArticles = document.querySelectorAll('.posts .post.active');
+    
+  for (let activeArticle of activeArticles){
+    activeArticle.classList.remove('active');
     }
 
   /* get 'href' attribute from the clicked link */
