@@ -40,3 +40,33 @@ const links = document.querySelectorAll('.titles a');
 for(let link of links){
   link.addEventListener('click', titleClickHandler);
 }
+
+//Generate Title List
+
+const optArticleSelector = '.post',
+      optTitleSelector = '.post-title',
+      optTitleListSelector = '.titles';
+
+function generateTitleLinks(customSelector = ''){
+
+  /* remove contents of titleList */
+  const titleList = document.querySelector(optTitleListSelector);
+  titleList.innerHTML = '';
+
+  /* for each article */
+  const articles = document.querySelector(optArticleSelector + customSelector);
+
+    for (let article of articles){
+
+      /* get the aricle id */
+      const articleId = article.getAttribute('id');
+
+      /* find the title element and get the title from the title element */
+      const artileTitle = article.querySelector(optTitleSelector).innerHTML;
+
+    }
+
+}
+
+
+generateTitleLinks();
