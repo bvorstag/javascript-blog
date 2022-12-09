@@ -190,3 +190,14 @@ function addClickListenersToTags(){
 
 addClickListenersToTags();
 
+//Add authors to articles
+
+function generateAuthors() {
+  let authorRightBar = {};
+
+  /* find all articles */
+  const articles = document.querySelectorAll(opts.articleSelector);
+
+  /*make html variable with empty string */
+  let html = '';
+  }
