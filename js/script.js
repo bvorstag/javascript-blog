@@ -162,24 +162,30 @@ function tagClickHandler(event){
   const allTagLinks = document.querySelectorAll('href');
 
   /* START LOOP: for each found tag link */
-  for(let tagLink of tagLinks);
+  for(let tagLink of tagLinks) {
    
-  /* add class active */
+    /* add class active */
+    tagLink.classList.add('active');
 
   /* END LOOP: for each found tag link */
-
+  }
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('data-tags~="' + tag + '"]');
 } 
 
 function addClickListenersToTags(){
   /* find all links to tags */
+  const allLinksToTags = document.querySelectorAll('a[href^="#tag-"]');
 
   /* START LOOP: for each link */
+  for (let allLinksToTag of allLinksToTags) {
 
     /* add tagClickHandler as event listener for that link */
+    allLinksToTag.addEventListener('click', tagClickHandler);
+
 
   /* END LOOP: for each link */
+  }
 }
 
 addClickListenersToTags();
