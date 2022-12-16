@@ -1,5 +1,14 @@
 'use strict';
 
+console.log(document.querySelector('#template-article-link'));
+
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author').innerHTML),
+  tagLinkCloud: Handlebars.compile(document.querySelector('#template-tag-cloud').innerHTML),
+};
+
 function titleClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
@@ -46,6 +55,8 @@ const optArticleSelector = '.post',
 
 function generateTitleLinks(customSelector = ''){
 
+  
+  
   /* remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
   titleList.innerHTML = '';
@@ -65,17 +76,17 @@ function generateTitleLinks(customSelector = ''){
 
     /* create HMTL of the link */
 
-    const linkHTML = '<li><a href="#' + articleId + '"><span> '+ articleTitle + '</span></a></li>';
+    const linkHTML = templates.articleLink({id: articleId, title: articleTitle});
     console.log(linkHTML);
 
     /* add link to the list */ 
     html = html + linkHTML;
 
-
-
   }
 
   titleList.innerHTML = html;
+
+  
   const links = document.querySelectorAll('.titles a');
 
   for(let link of links){
@@ -117,7 +128,7 @@ function generateTags(){
 
       
       /* generate HTML of the link */
-      const linkHTML = '<li> <a href="#tag-' + tag + '"> ' + tag + ' </a> </li> ';
+      const linkHTML = templates.tagLink({tag: tag});
       //* const linkHTML = '<li><a href="#tag-design">design</a></li>'; // 
       
       /* add generated code to html variable */
@@ -159,7 +170,7 @@ function generateTags(){
     else{
       className = 'tag-size-5';
     }
-    const linkHTML = '<li> <a href="#tag-' + tag + '" class="'+ className +'"> ' + tag + ' </a> </li> ';
+    const linkHTML = templates.tagLinkCloud({tag: tag, className: className});
     html = html + linkHTML;
   }
 
@@ -242,7 +253,7 @@ function generateAuthors(){
     const articleAuthor = article.getAttribute('data-author');
    
     /* generate HTML of the link */
-    const linkHTML = '<li> <a href="#author-' + articleAuthor + '"> ' + articleAuthor + ' </a> </li> ';
+    const linkHTML = templates.authorLink({ author: articleAuthor});
     //* const linkHTML = '<li><a href="#tag-design">design</a></li>'; // 
       
     
